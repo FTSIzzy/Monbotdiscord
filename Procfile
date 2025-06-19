@@ -1,1 +1,1 @@
-start: python [main.py](http://_vscodecontentref_/0)
+start: python bot/main.py
