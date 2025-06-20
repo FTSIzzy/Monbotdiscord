@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 import random
 
 load_dotenv()
-TOKEN = os.getenv("")
+TOKEN = os.getenv("DISCORD_TOKEN")
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -14,6 +14,7 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 
 @bot.event
 async def on_ready():
+    await bot.load_extension('commands.nom_de_ton_module')
     print(f"Connecté en tant que {bot.user}")
 
 @bot.command()
@@ -51,4 +52,5 @@ for filename in os.listdir('./bot/commands'):
         bot.load_extension(f'commands.{filename[:-3]}')
 
 # Run the bot
-bot.run(TOKEN)
+if __name__ == "__main__":
+    bot.run(TOKEN)
